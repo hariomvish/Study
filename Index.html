@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study in Balkans</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#0f2a3d;--sea:#1c6e8c;--stone:#eef1f0;--card:#fff;--sun:#e3a72f;--text:#1d2b36;--muted:#5a6b78;--line:#d5dcdc;--hero:#0f2a3d;--herotext:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8f1f5;--sea:#5bb4d1;--stone:#0c1a24;--card:#13283a;--sun:#e8b441;--text:#dfe8ed;--muted:#9bb0bd;--line:#26405a;--hero:#0a1620;--herotext:#fff}}
+:root[data-theme="dark"]{--ink:#e8f1f5;--sea:#5bb4d1;--stone:#0c1a24;--card:#13283a;--sun:#e8b441;--text:#dfe8ed;--muted:#9bb0bd;--line:#26405a;--hero:#0a1620;--herotext:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--text);font:400 16px/1.6 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;color:var(--ink);line-height:1.1;margin:0 0 .5em}
+a{color:var(--sea)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{max-width:1080px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;flex-wrap:wrap}
+.logo{font:800 1.25rem "Bricolage Grotesque",sans-serif;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--sea) 0 33%,var(--sun) 0 66%,var(--ink) 0);display:inline-block}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--text);font-weight:500}
+nav a[aria-current="page"]{background:var(--ink);color:var(--stone)}
+main{max-width:1080px;margin:auto;padding:0 20px 60px}
+.page{display:none}.page.on{display:block}
+.hero{background:var(--hero);color:var(--herotext);margin:0 -20px;padding:64px 20px 56px}
+.hero-in{max-width:1080px;margin:auto}
+.hero h1{color:var(--herotext);font-size:clamp(2.4rem,7vw,4.6rem);font-weight:800;max-width:14ch}
+.hero p{max-width:52ch;font-size:1.1rem;opacity:.9}
+.btn{display:inline-block;background:var(--sun);color:#1b1b1b;font-weight:600;padding:12px 22px;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn.alt{background:transparent;color:inherit;border:2px solid currentColor;margin-left:8px}
+.flags{display:flex;margin-top:36px;height:10px;border-radius:5px;overflow:hidden;max-width:520px}
+.flags span{flex:1}
+.countries{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:.9rem;opacity:.85}
+section{padding-top:48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card h3{font-size:1.2rem}
+.card p{margin:0;color:var(--muted)}
+.tag{display:inline-block;font-size:.8rem;font-weight:600;background:var(--stone);color:var(--sea);border-radius:6px;padding:2px 8px;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;margin-top:20px}
+.stats b{display:block;font:800 2rem "Bricolage Grotesque",sans-serif;color:var(--sea)}
+.pagehead{padding:52px 0 8px}
+.pagehead h1{font-size:clamp(2rem,5vw,3.2rem)}
+.pagehead p{max-width:60ch;color:var(--muted);font-size:1.05rem}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 16px;border-radius:999px;cursor:pointer;font:inherit}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--stone);border-color:var(--ink)}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;min-width:520px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
+th{color:var(--ink);font-family:"Bricolage Grotesque",sans-serif}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+form label{display:block;font-weight:600;margin:14px 0 4px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text);font:inherit}
+#ok{display:none;margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--card);border:2px solid var(--sea)}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--muted);font-size:.9rem}
+.lang{display:flex;align-items:center;gap:8px;font-size:.9rem}.lang[hidden]{display:none}.lang select{width:auto;padding:7px 10px}#tstat{color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#home"><i></i>Study in Balkans</a>
+<nav aria-label="Main">
+<a href="#home">Home</a><a href="#about">About Us</a><a href="#courses">Courses</a><a href="#universities">Universities</a><a href="#contact">Contact</a>
+</nav><div class="lang" id="langwrap"><label for="lang">Language</label><select id="lang"></select><span id="tstat" role="status"></span></div></div></header>
+
+<main>
+<!-- HOME -->
+<div class="page" id="home">
+<div class="hero"><div class="hero-in">
+<h1>Study in the heart of Southeast Europe</h1>
+<p>Quality degrees, welcoming cities and living costs lower than much of Western Europe. We guide international students from choosing a course to arriving on campus.</p>
+<a class="btn" href="#universities">Explore universities</a><a class="btn alt" href="#contact">Get free advice</a>
+<div class="flags" aria-hidden="true"><span style="background:#c6363c"></span><span style="background:#fff"></span><span style="background:#0c4076"></span><span style="background:#e3a72f"></span><span style="background:#1c6e8c"></span><span style="background:#2f7d4f"></span></div>
+<div class="countries"><span>Serbia</span><span>Croatia</span><span>Bosnia &amp; Herzegovina</span><span>Montenegro</span><span>North Macedonia</span><span>Albania</span></div>
+</div></div>
+<section><h2>Why students choose the Balkans</h2>
+<div class="grid">
+<div class="card"><h3>Affordable living</h3><p>Rent, food and transport cost less than in many EU capitals, so your budget goes further.</p></div>
+<div class="card"><h3>English-taught programs</h3><p>Many universities offer degrees taught in English, especially in medicine, engineering and business.</p></div>
+<div class="card"><h3>Central location</h3><p>Easy travel to the rest of Europe, with rich history, coastlines and mountains on your doorstep.</p></div>
+</div></section>
+<section><h2>How we help</h2>
+<div class="grid">
+<div class="card"><span class="tag">Step 1</span><h3>Choose</h3><p>We match your marks, budget and goals to the right course and country.</p></div>
+<div class="card"><span class="tag">Step 2</span><h3>Apply</h3><p>We prepare your documents and handle applications and admission letters.</p></div>
+<div class="card"><span class="tag">Step 3</span><h3>Travel</h3><p>Visa guidance, accommodation and airport pickup, so you arrive prepared.</p></div>
+</div></section>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="about">
+<div class="pagehead"><h1>About Us</h1><p>Study in Balkans is an education guidance project that connects international students with universities in Southeast Europe.</p></div>
+<div class="two">
+<div class="card"><h3>Our mission</h3><p>To make studying abroad simple, honest and affordable. We give clear information so that students and parents can decide with confidence.</p></div>
+<div class="card"><h3>Our vision</h3><p>To become the most trusted guide for students looking at the Balkan region for higher education.</p></div>
+</div>
+<section><h2>What we do</h2>
+<div class="grid">
+<div class="card"><h3>Counselling</h3><p>One-to-one sessions on courses, universities and career paths.</p></div>
+<div class="card"><h3>Admissions</h3><p>Document checks, applications and follow-up with universities.</p></div>
+<div class="card"><h3>Visa support</h3><p>Step-by-step help with student visa and residence paperwork.</p></div>
+<div class="card"><h3>Settling in</h3><p>Accommodation search, orientation and local support.</p></div>
+</div></section>
+<section><div class="stats">
+<div class="card"><b>6</b>countries covered</div><div class="card"><b>7+</b>partner universities</div><div class="card"><b>20+</b>degree programs</div><div class="card"><b>Free</b>first consultation</div>
+</div></section>
+</div>
+
+<!-- COURSES -->
+<div class="page" id="courses">
+<div class="pagehead"><h1>Courses</h1><p>Popular fields of study among international students. Duration and language of instruction vary by university.</p></div>
+<div class="grid">
+<div class="card"><span class="tag">6 years</span><h3>Medicine (MD)</h3><p>Clinical training in teaching hospitals, with English-taught tracks at several universities.</p></div>
+<div class="card"><span class="tag">5 years</span><h3>Dentistry</h3><p>Combines theory with early hands-on practice in university clinics.</p></div>
+<div class="card"><span class="tag">4 years</span><h3>Engineering</h3><p>Civil, mechanical, electrical and computer engineering programs.</p></div>
+<div class="card"><span class="tag">3 to 4 years</span><h3>Computer Science &amp; IT</h3><p>Software, data and networks, with growing links to local tech companies.</p></div>
+<div class="card"><span class="tag">3 years</span><h3>Business &amp; Management</h3><p>Finance, marketing and entrepreneurship for a global career.</p></div>
+<div class="card"><span class="tag">5 years</span><h3>Architecture</h3><p>Design studio training in cities with strong architectural heritage.</p></div>
+<div class="card"><span class="tag">5 years</span><h3>Pharmacy</h3><p>Pharmaceutical sciences, lab work and clinical placements.</p></div>
+<div class="card"><span class="tag">3 years</span><h3>Tourism &amp; Hospitality</h3><p>Ideal for students interested in travel, hotels and events.</p></div>
+</div>
+<p style="color:var(--muted);margin-top:24px">Course details are a general guide. Please confirm exact duration, fees and entry requirements with each university.</p>
+</div>
+
+<!-- UNIVERSITIES -->
+<div class="page" id="universities">
+<div class="pagehead"><h1>Universities</h1><p>A selection of well-known public universities in the region. Filter by country.</p></div>
+<div class="filters" role="group" aria-label="Filter by country" id="filters"></div>
+<div class="tablewrap"><table><thead><tr><th>University</th><th>City</th><th>Country</th></tr></thead><tbody id="uni"></tbody></table></div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="contact">
+<div class="pagehead"><h1>Contact</h1><p>Tell us what you want to study and we will reply with course and university options.</p></div>
+<div class="two">
+<div>
+<form id="f">
+<label for="n">Full name</label><input id="n" required autocomplete="name">
+<label for="e">Email</label><input id="e" type="email" required autocomplete="email">
+<label for="c">Course of interest</label>
+<select id="c"><option>Medicine</option><option>Dentistry</option><option>Engineering</option><option>Computer Science &amp; IT</option><option>Business &amp; Management</option><option>Architecture</option><option>Pharmacy</option><option>Tourism &amp; Hospitality</option></select>
+<label for="m">Message</label><textarea id="m" rows="4"></textarea>
+<p><button class="btn" type="submit">Send enquiry</button></p>
+<div id="ok" role="status">Thank you. Your enquiry is ready, and our team will reply by email.</div>
+</form>
+</div>
+<div class="card"><h3>Get in touch</h3>
+<p><b>Email:</b> info@studyinbalkans.example</p>
+<p><b>Phone:</b> +00 000 000 0000</p>
+<p><b>Office hours:</b> Monday to Saturday, 10:00 to 18:00</p>
+<p style="margin-top:12px">Replace these sample details with your real contact information.</p></div>
+</div>
+</div>
+</main>
+<footer>&copy; 2026 Study in Balkans. College project website.</footer>
+
+<script>
+const unis=[["University of Belgrade","Belgrade","Serbia"],["University of Novi Sad","Novi Sad","Serbia"],["University of Zagreb","Zagreb","Croatia"],["University of Split","Split","Croatia"],["University of Sarajevo","Sarajevo","Bosnia & Herzegovina"],["University of Montenegro","Podgorica","Montenegro"],["Ss. Cyril and Methodius University","Skopje","North Macedonia"],["University of Tirana","Tirana","Albania"]];
+const countries=["All",...new Set(unis.map(u=>u[2]))];
+let cur="All";
+function drawUnis(){
+  const fb=document.getElementById("filters");
+  fb.innerHTML="";
+  countries.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.setAttribute("aria-pressed",c===cur);b.onclick=()=>{cur=c;drawUnis()};fb.appendChild(b)});
+  document.getElementById("uni").innerHTML=unis.filter(u=>cur==="All"||u[2]===cur).map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td><td>${u[2]}</td></tr>`).join("");
+  if(lang!=="en")applyLang();
+}
+function route(){
+  const id=(location.hash||"#home").slice(1);
+  const ok=document.getElementById(id)?id:"home";
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id===ok));
+  document.querySelectorAll("nav a").forEach(a=>a.getAttribute("href")==="#"+ok?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
+  document.title=(ok==="home"?"":ok[0].toUpperCase()+ok.slice(1)+" | ")+"Study in Balkans";
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();document.getElementById("ok").style.display="block";e.target.reset()});
+const LANGS={en:"English",hi:"Hindi (हिन्दी)",sr:"Serbian (Српски)",hr:"Croatian (Hrvatski)",bs:"Bosnian (Bosanski)",sq:"Albanian (Shqip)",mk:"Macedonian (Македонски)",ar:"Arabic (العربية)",ru:"Russian (Русский)",fr:"French (Français)",es:"Spanish (Español)",tr:"Turkish (Türkçe)"};
+const K=["Home","About Us","Courses","Universities","Contact","Study in the heart of Southeast Europe","Explore universities","Get free advice","Why students choose the Balkans","How we help","Choose","Apply","Travel","Our mission","Our vision","What we do","Counselling","Admissions","Visa support","Medicine (MD)","Dentistry","Engineering","Full name","Email","Message","Send enquiry","Get in touch","University","City","Country","All"];
+const V={hi:["होम","हमारे बारे में","कोर्स","विश्वविद्यालय","संपर्क करें","दक्षिण-पूर्व यूरोप के केंद्र में पढ़ाई करें","विश्वविद्यालय देखें","मुफ़्त सलाह लें","छात्र बाल्कन क्यों चुनते हैं","हम कैसे मदद करते हैं","चुनें","आवेदन करें","यात्रा","हमारा मिशन","हमारा विज़न","हम क्या करते हैं","काउंसलिंग","प्रवेश","वीज़ा सहायता","मेडिसिन (एमडी)","दंत चिकित्सा","इंजीनियरिंग","पूरा नाम","ईमेल","संदेश","पूछताछ भेजें","संपर्क में रहें","विश्वविद्यालय","शहर","देश","सभी"],
+sr:["Почетна","О нама","Курсеви","Универзитети","Контакт","Студирајте у срцу југоисточне Европе","Погледајте универзитете","Бесплатан савет","Зашто студенти бирају Балкан","Како помажемо","Изаберите","Пријавите се","Путујте","Наша мисија","Наша визија","Шта радимо","Саветовање","Упис","Помоћ око визе","Медицина","Стоматологија","Инжењерство","Име и презиме","Е-пошта","Порука","Пошаљи упит","Јавите нам се","Универзитет","Град","Држава","Све"],
+ar:["الرئيسية","من نحن","الدورات","الجامعات","اتصل بنا","ادرس في قلب جنوب شرق أوروبا","استكشف الجامعات","احصل على استشارة مجانية","لماذا يختار الطلاب البلقان","كيف نساعدك","اختر","قدّم","سافر","مهمتنا","رؤيتنا","ماذا نفعل","الإرشاد","القبول","دعم التأشيرة","الطب البشري","طب الأسنان","الهندسة","الاسم الكامل","البريد الإلكتروني","الرسالة","أرسل الاستفسار","تواصل معنا","الجامعة","المدينة","الدولة","الكل"]};
+const FB={};for(const c in V){FB[c]={__fb:1};K.forEach((k,i)=>FB[c][k]=V[c][i])}
+const orig=new WeakMap(),cacheL={};let tr={},lang="en";
+const PL={en:'English',hi:'हिन्दी',ru:'Русский',sr:'Srpski'};
+const LN={en:'English',hi:'Hindi',ru:'Russian',sr:'Serbian (Latin script)'};
+const T=[
+['Home','होम','Главная','Početna'],['About Us','हमारे बारे में','О нас','O nama'],['Courses','कोर्स','Курсы','Kursevi'],['Universities','विश्वविद्यालय','Университеты','Univerziteti'],['Contact','संपर्क','Контакты','Kontakt'],['Translator','अनुवादक','Переводчик','Prevodilac'],
+['Study in the heart of Southeast Europe','दक्षिण-पूर्व यूरोप के केंद्र में पढ़ाई करें','Учитесь в сердце Юго-Восточной Европы','Studirajte u srcu jugoistočne Evrope'],
+['Quality degrees, welcoming cities and living costs lower than much of Western Europe. We guide international students from choosing a course to arriving on campus.','गुणवत्तापूर्ण डिग्री, स्वागत करने वाले शहर और पश्चिमी यूरोप के बड़े हिस्से से कम रहने का खर्च। हम अंतरराष्ट्रीय छात्रों को कोर्स चुनने से लेकर कैंपस पहुँचने तक मार्गदर्शन देते हैं।','Качественные дипломы, гостеприимные города и стоимость жизни ниже, чем в большей части Западной Европы. Мы сопровождаем иностранных студентов от выбора программы до приезда в кампус.','Kvalitetne diplome, gostoljubivi gradovi i troškovi života niži nego u većem delu Zapadne Evrope. Vodimo strane studente od izbora kursa do dolaska u kampus.'],
+['Explore universities','विश्वविद्यालय देखें','Смотреть университеты','Pogledajte univerzitete'],['Get free advice','मुफ़्त सलाह लें','Получить бесплатную консультацию','Dobijte besplatan savet'],
+['Serbia','सर्बिया','Сербия','Srbija'],['Croatia','क्रोएशिया','Хорватия','Hrvatska'],['Bosnia & Herzegovina','बोस्निया और हर्ज़ेगोविना','Босния и Герцеговина','Bosna i Hercegovina'],['Montenegro','मोंटेनेग्रो','Черногория','Crna Gora'],['North Macedonia','उत्तर मैसेडोनिया','Северная Македония','Severna Makedonija'],['Albania','अल्बानिया','Албания','Albanija'],
+['Why students choose the Balkans','छात्र बाल्कन क्यों चुनते हैं','Почему студенты выбирают Балканы','Zašto studenti biraju Balkan'],
+['Affordable living','किफ़ायती रहन-सहन','Доступная жизнь','Pristupačan život'],['Rent, food and transport cost less than in many EU capitals, so your budget goes further.','किराया, खाना और परिवहन कई यूरोपीय संघ की राजधानियों से सस्ते हैं, इसलिए आपका बजट ज़्यादा चलता है।','Аренда, еда и транспорт стоят дешевле, чем во многих столицах ЕС, поэтому бюджета хватает на больше.','Stanarina, hrana i prevoz koštaju manje nego u mnogim prestonicama EU, pa vam budžet duže traje.'],
+['English-taught programs','अंग्रेज़ी माध्यम के कार्यक्रम','Программы на английском языке','Programi na engleskom jeziku'],['Many universities offer degrees taught in English, especially in medicine, engineering and business.','कई विश्वविद्यालय अंग्रेज़ी में डिग्री कराते हैं, खासकर चिकित्सा, इंजीनियरिंग और बिज़नेस में।','Многие университеты предлагают обучение на английском, особенно по медицине, инженерии и бизнесу.','Mnogi univerziteti nude studije na engleskom, posebno iz medicine, inženjerstva i biznisa.'],
+['Central location','केंद्रीय स्थान','Удобное расположение','Centralna lokacija'],['Easy travel to the rest of Europe, with rich history, coastlines and mountains on your doorstep.','बाकी यूरोप तक आसान यात्रा, और आपके आसपास समृद्ध इतिहास, समुद्र तट और पहाड़।','Легко добраться до остальной Европы, а богатая история, побережья и горы рядом.','Lako putovanje po ostatku Evrope, a bogata istorija, obale i planine su vam nadomak ruke.'],
+['How we help','हम कैसे मदद करते हैं','Как мы помогаем','Kako pomažemo'],['Step 1','चरण 1','Шаг 1','Korak 1'],['Step 2','चरण 2','Шаг 2','Korak 2'],['Step 3','चरण 3','Шаг 3','Korak 3'],
+['Choose','चुनें','Выберите','Izaberite'],['We match your marks, budget and goals to the right course and country.','हम आपके अंक, बजट और लक्ष्यों के अनुसार सही कोर्स और देश चुनने में मदद करते हैं।','Мы подбираем курс и страну по вашим оценкам, бюджету и целям.','Povezujemo vaše ocene, budžet i ciljeve sa pravim kursom i državom.'],
+['Apply','आवेदन करें','Подайте заявку','Prijavite se'],['We prepare your documents and handle applications and admission letters.','हम आपके दस्तावेज़ तैयार करते हैं और आवेदन व प्रवेश पत्र संभालते हैं।','Мы готовим документы и занимаемся заявками и письмами о зачислении.','Pripremamo vaša dokumenta i vodimo prijave i pisma o prijemu.'],
+['Travel','यात्रा','Поездка','Putovanje'],['Visa guidance, accommodation and airport pickup, so you arrive prepared.','वीज़ा मार्गदर्शन, आवास और एयरपोर्ट पिकअप, ताकि आप पूरी तैयारी के साथ पहुँचें।','Помощь с визой, жильем и встреча в аэропорту, чтобы вы приехали подготовленными.','Pomoć oko vize, smeštaja i prihvat na aerodromu, da stignete spremni.'],
+['Study in Balkans is an education guidance project that connects international students with universities in Southeast Europe.','Study in Balkans एक शिक्षा मार्गदर्शन परियोजना है जो अंतरराष्ट्रीय छात्रों को दक्षिण-पूर्व यूरोप के विश्वविद्यालयों से जोड़ती है।','Study in Balkans — образовательный проект, который связывает иностранных студентов с университетами Юго-Восточной Европы.','Study in Balkans je obrazovni projekat koji povezuje strane studente sa univerzitetima u jugoistočnoj Evropi.'],
+['Our mission','हमारा मिशन','Наша миссия','Naša misija'],['To make studying abroad simple, honest and affordable. We give clear information so that students and parents can decide with confidence.','विदेश में पढ़ाई को सरल, ईमानदार और किफ़ायती बनाना। हम स्पष्ट जानकारी देते हैं ताकि छात्र और अभिभावक भरोसे के साथ निर्णय ले सकें।','Сделать учебу за границей простой, честной и доступной. Мы даем понятную информацию, чтобы студенты и родители могли решать уверенно.','Da studiranje u inostranstvu bude jednostavno, pošteno i pristupačno. Dajemo jasne informacije da studenti i roditelji odluče sa sigurnošću.'],
+['Our vision','हमारा विज़न','Наше видение','Naša vizija'],['To become the most trusted guide for students looking at the Balkan region for higher education.','उच्च शिक्षा के लिए बाल्कन क्षेत्र देखने वाले छात्रों का सबसे भरोसेमंद मार्गदर्शक बनना।','Стать самым надежным проводником для студентов, выбирающих Балканы для высшего образования.','Da postanemo najpouzdaniji vodič za studente koji za visoko obrazovanje razmatraju Balkan.'],
+['What we do','हम क्या करते हैं','Что мы делаем','Šta radimo'],['Counselling','काउंसलिंग','Консультации','Savetovanje'],['One-to-one sessions on courses, universities and career paths.','कोर्स, विश्वविद्यालय और करियर के रास्तों पर व्यक्तिगत सत्र।','Индивидуальные встречи о курсах, университетах и карьере.','Individualni razgovori o kursevima, univerzitetima i karijeri.'],
+['Admissions','प्रवेश','Поступление','Upis'],['Document checks, applications and follow-up with universities.','दस्तावेज़ों की जाँच, आवेदन और विश्वविद्यालयों के साथ फ़ॉलो-अप।','Проверка документов, заявки и связь с университетами.','Provera dokumenata, prijave i komunikacija sa univerzitetima.'],
+['Visa support','वीज़ा सहायता','Помощь с визой','Pomoć oko vize'],['Step-by-step help with student visa and residence paperwork.','स्टूडेंट वीज़ा और निवास संबंधी कागज़ात में चरण-दर-चरण मदद।','Пошаговая помощь со студенческой визой и документами на проживание.','Pomoć korak po korak oko studentske vize i dozvole boravka.'],
+['Settling in','नई जगह बसना','Адаптация','Useljenje'],['Accommodation search, orientation and local support.','आवास की खोज, ओरिएंटेशन और स्थानीय सहायता।','Поиск жилья, ориентация и местная поддержка.','Traženje smeštaja, orijentacija i podrška na licu mesta.'],
+['countries covered','देश शामिल','стран','zemalja'],['partner universities','साझेदार विश्वविद्यालय','университетов-партнеров','univerziteta partnera'],['degree programs','डिग्री कार्यक्रम','программ обучения','studijskih programa'],['Free','मुफ़्त','Бесплатная','Besplatna'],['first consultation','पहला परामर्श','первая консультация','prva konsultacija'],
+['Popular fields of study among international students. Duration and language of instruction vary by university.','अंतरराष्ट्रीय छात्रों में लोकप्रिय अध्ययन क्षेत्र। अवधि और शिक्षण भाषा विश्वविद्यालय के अनुसार अलग होती है।','Популярные направления среди иностранных студентов. Срок и язык обучения зависят от университета.','Popularne oblasti studija među stranim studentima. Trajanje i jezik nastave zavise od univerziteta.'],
+['6 years','6 वर्ष','6 лет','6 godina'],['5 years','5 वर्ष','5 лет','5 godina'],['4 years','4 वर्ष','4 года','4 godine'],['3 to 4 years','3 से 4 वर्ष','3–4 года','3 do 4 godine'],['3 years','3 वर्ष','3 года','3 godine'],
+['Medicine (MD)','मेडिसिन (एमडी)','Медицина (MD)','Medicina (MD)'],['Clinical training in teaching hospitals, with English-taught tracks at several universities.','शिक्षण अस्पतालों में क्लिनिकल प्रशिक्षण, कई विश्वविद्यालयों में अंग्रेज़ी माध्यम के विकल्प के साथ।','Клиническая практика в университетских больницах, на нескольких университетах есть программы на английском.','Klinička obuka u nastavnim bolnicama, uz programe na engleskom na nekoliko univerziteta.'],
+['Dentistry','दंत चिकित्सा','Стоматология','Stomatologija'],['Combines theory with early hands-on practice in university clinics.','विश्वविद्यालय क्लिनिकों में सिद्धांत के साथ शुरुआती व्यावहारिक अभ्यास।','Теория сочетается с ранней практикой в университетских клиниках.','Teorija se spaja sa ranom praksom u univerzitetskim klinikama.'],
+['Engineering','इंजीनियरिंग','Инженерия','Inženjerstvo'],['Civil, mechanical, electrical and computer engineering programs.','सिविल, मैकेनिकल, इलेक्ट्रिकल और कंप्यूटर इंजीनियरिंग कार्यक्रम।','Программы по гражданской, машиностроительной, электротехнической и компьютерной инженерии.','Programi iz građevinskog, mašinskog, elektro i računarskog inženjerstva.'],
+['Computer Science & IT','कंप्यूटर साइंस और आईटी','Информатика и IT','Računarstvo i IT'],['Software, data and networks, with growing links to local tech companies.','सॉफ़्टवेयर, डेटा और नेटवर्क, स्थानीय टेक कंपनियों से बढ़ते संबंधों के साथ।','Программное обеспечение, данные и сети, с растущими связями с местными технологическими компаниями.','Softver, podaci i mreže, uz sve jače veze sa lokalnim tehnološkim kompanijama.'],
+['Business & Management','बिज़नेस और मैनेजमेंट','Бизнес и менеджмент','Biznis i menadžment'],['Finance, marketing and entrepreneurship for a global career.','वैश्विक करियर के लिए फ़ाइनेंस, मार्केटिंग और उद्यमिता।','Финансы, маркетинг и предпринимательство для международной карьеры.','Finansije, marketing i preduzetništvo za globalnu karijeru.'],
+['Architecture','वास्तुकला','Архитектура','Arhitektura'],['Design studio training in cities with strong architectural heritage.','समृद्ध स्थापत्य विरासत वाले शहरों में डिज़ाइन स्टूडियो प्रशिक्षण।','Проектная студийная практика в городах с богатым архитектурным наследием.','Studijski rad na projektovanju u gradovima sa bogatim arhitektonskim nasleđem.'],
+['Pharmacy','फ़ार्मेसी','Фармацевтика','Farmacija'],['Pharmaceutical sciences, lab work and clinical placements.','फ़ार्मास्यूटिकल विज्ञान, प्रयोगशाला कार्य और क्लिनिकल प्लेसमेंट।','Фармацевтические науки, лабораторные работы и клиническая практика.','Farmaceutske nauke, laboratorijski rad i klinička praksa.'],
+['Tourism & Hospitality','पर्यटन और आतिथ्य','Туризм и гостеприимство','Turizam i ugostiteljstvo'],['Ideal for students interested in travel, hotels and events.','यात्रा, होटल और इवेंट में रुचि रखने वाले छात्रों के लिए उपयुक्त।','Подходит студентам, интересующимся путешествиями, отелями и мероприятиями.','Idealno za studente koje zanimaju putovanja, hoteli i događaji.'],
+['Course details are a general guide. Please confirm exact duration, fees and entry requirements with each university.','कोर्स की जानकारी सामान्य मार्गदर्शन है। कृपया हर विश्वविद्यालय से सटीक अवधि, शुल्क और प्रवेश शर्तों की पुष्टि करें।','Сведения о курсах носят общий характер. Уточните точный срок, стоимость и требования к поступлению в каждом университете.','Podaci o kursevima su opšti vodič. Potvrdite tačno trajanje, troškove i uslove upisa na svakom univerzitetu.'],
+['A selection of well-known public universities in the region. Filter by country.','क्षेत्र के प्रसिद्ध सार्वजनिक विश्वविद्यालयों का चयन। देश के अनुसार फ़िल्टर करें।','Подборка известных государственных университетов региона. Фильтр по странам.','Izbor poznatih državnih univerziteta u regionu. Filtrirajte po državi.'],
+['All','सभी','Все','Sve'],['University','विश्वविद्यालय','Университет','Univerzitet'],['City','शहर','Город','Grad'],['Country','देश','Страна','Država'],
+['University of Belgrade','बेलग्रेड विश्वविद्यालय','Белградский университет','Univerzitet u Beogradu'],['University of Novi Sad','नोवी साद विश्वविद्यालय','Университет Нови-Сада','Univerzitet u Novom Sadu'],['University of Zagreb','ज़ाग्रेब विश्वविद्यालय','Загребский университет','Univerzitet u Zagrebu'],['University of Split','स्प्लिट विश्वविद्यालय','Сплитский университет','Univerzitet u Splitu'],['University of Sarajevo','साराजेवो विश्वविद्यालय','Университет Сараева','Univerzitet u Sarajevu'],['University of Montenegro','मोंटेनेग्रो विश्वविद्यालय','Университет Черногории','Univerzitet Crne Gore'],['Ss. Cyril and Methodius University','सेंट सिरिल और मेथोडियस विश्वविद्यालय','Университет святых Кирилла и Мефодия','Univerzitet Svetih Ćirila i Metodija'],['University of Tirana','तिराना विश्वविद्यालय','Университет Тираны','Univerzitet u Tirani'],
+['Belgrade','बेलग्रेड','Белград','Beograd'],['Novi Sad','नोवी साद','Нови-Сад','Novi Sad'],['Zagreb','ज़ाग्रेब','Загреб','Zagreb'],['Split','स्प्लिट','Сплит','Split'],['Sarajevo','साराजेवो','Сараево','Sarajevo'],['Podgorica','पोडगोरिका','Подгорица','Podgorica'],['Skopje','स्कोपजे','Скопье','Skoplje'],['Tirana','तिराना','Тирана','Tirana'],
+['Tell us what you want to study and we will reply with course and university options.','हमें बताइए कि आप क्या पढ़ना चाहते हैं, हम कोर्स और विश्वविद्यालय के विकल्पों के साथ जवाब देंगे।','Расскажите, что вы хотите изучать, и мы ответим вариантами курсов и университетов.','Recite nam šta želite da studirate, a mi ćemo odgovoriti ponudom kurseva i univerziteta.'],
+['Full name','पूरा नाम','Полное имя','Ime i prezime'],['Email','ईमेल','Эл. почта','E-pošta'],['Course of interest','रुचि का कोर्स','Интересующий курс','Kurs koji vas zanima'],['Message','संदेश','Сообщение','Poruka'],['Send enquiry','पूछताछ भेजें','Отправить запрос','Pošalji upit'],['Medicine','मेडिसिन','Медицина','Medicina'],
+['Thank you. Your enquiry is ready, and our team will reply by email.','धन्यवाद। आपकी पूछताछ तैयार है, हमारी टीम ईमेल से जवाब देगी।','Спасибо. Ваш запрос готов, наша команда ответит по электронной почте.','Hvala. Vaš upit je spreman, naš tim će odgovoriti e-poštom.'],
+['Get in touch','संपर्क में रहें','Свяжитесь с нами','Javite nam se'],['Email:','ईमेल:','Эл. почта:','E-pošta:'],['Phone:','फ़ोन:','Телефон:','Telefon:'],['Office hours:','कार्य समय:','Часы работы:','Radno vreme:'],['Monday to Saturday, 10:00 to 18:00','सोमवार से शनिवार, 10:00 से 18:00','С понедельника по субботу, с 10:00 до 18:00','Od ponedeljka do subote, od 10:00 do 18:00'],['Replace these sample details with your real contact information.','इन नमूना विवरणों को अपनी वास्तविक संपर्क जानकारी से बदलें।','Замените эти примерные данные вашими настоящими контактами.','Zamenite ove primere vašim stvarnim kontakt podacima.'],
+['© 2026 Study in Balkans. College project website.','© 2026 Study in Balkans। कॉलेज प्रोजेक्ट वेबसाइट।','© 2026 Study in Balkans. Сайт студенческого проекта.','© 2026 Study in Balkans. Veb-sajt koledž projekta.'],
+['Language Translator','भाषा अनुवादक','Языковой переводчик','Jezički prevodilac'],['Translate between English, Hindi, Russian and Serbian. Type or paste your text, pick the languages and press Translate.','अंग्रेज़ी, हिन्दी, रूसी और सर्बियाई के बीच अनुवाद करें। अपना पाठ लिखें या चिपकाएँ, भाषाएँ चुनें और अनुवाद करें दबाएँ।','Переводите между английским, хинди, русским и сербским. Введите или вставьте текст, выберите языки и нажмите «Перевести».','Prevodite između engleskog, hindija, ruskog i srpskog. Unesite ili nalepite tekst, izaberite jezike i pritisnite Prevedi.'],
+['From','से','С языка','Sa jezika'],['To','में','На язык','Na jezik'],['Text','पाठ','Текст','Tekst'],['Translate','अनुवाद करें','Перевести','Prevedi'],['Swap languages','भाषाएँ बदलें','Поменять языки','Zameni jezike'],['Useful phrases','उपयोगी वाक्य','Полезные фразы','Korisne fraze']
+];
+['hi','ru','sr'].forEach((c,j)=>{cacheL[c]={};T.forEach(r=>cacheL[c][r[0]]=r[j+1])});
+const sel=document.getElementById("lang"),stat=document.getElementById("tstat");
+function nodes(){const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.nodeValue.trim()&&!n.parentElement.closest("script,style,#langwrap,.nt")?1:2});const a=[];while(w.nextNode())a.push(w.currentNode);return a}
+function applyLang(){nodes().forEach(n=>{if(!orig.has(n))orig.set(n,n.nodeValue);const o=orig.get(n),t=tr[o.trim()];n.nodeValue=t?o.replace(o.trim(),()=>t):o})}
+function setDir(c){document.documentElement.dir=c==="ar"?"rtl":"ltr";document.documentElement.lang=c}
+async function setLang(code){
+  if(code!=="en"&&!cacheL[code]){
+    stat.textContent="Translating...";
+    try{
+      const sample=await claude.use("sample");
+      const set=new Set(["All",...unis.flat()]);
+      nodes().forEach(n=>set.add((orig.get(n)||n.nodeValue).trim()));
+      const list=[...set];
+      const out=await sample.json("Translate every string in this JSON array from English into "+LANGS[code]+". Keep university and city names in their usual local spelling. Return ONLY a JSON array with the same length and order.\n"+JSON.stringify(list));
+      if(!Array.isArray(out)||out.length!==list.length)throw new Error("bad");
+      const m={};list.forEach((s,i)=>m[s]=out[i]);cacheL[code]=m;
+    }catch(e){if(FB[code]){cacheL[code]=FB[code]}else{stat.textContent="Full translation is not available for this language here. Showing English.";sel.value=lang;return}}
+  }
+  tr=code==="en"?{}:cacheL[code];lang=code;applyLang();setDir(code);stat.textContent=tr.__fb?"Basic translation: menus and headings only":"";
+}
+Object.entries(PL).forEach(([k,v])=>sel.add(new Option(v,k)));
+sel.onchange=()=>setLang(sel.value);
+if(window.claude&&claude.use)claude.use("sample").then(s=>{if(s)document.getElementById("langwrap").hidden=false}).catch(()=>{});
+drawUnis();route();
+</script>
+</body>
+</html>
